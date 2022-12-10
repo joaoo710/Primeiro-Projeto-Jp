@@ -1,0 +1,157 @@
+* { /*limpando padrões do computador*/
+    margin: 0; /*tira todas as margens*/
+    padding: 0;
+    box-sizing: border-box; /*considera somente o primeiro widht*/
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-image: url(./assets/bg.jpg);
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #121214;
+} 
+
+body * {
+    font-family: 'inter',sans-serif;
+    line-height: 160%; /*altura da linha*/
+}
+header {
+    margin-top: 32px;
+    /* text-align: center; todo conteudo identificado como propiedade de texto é alinhado ao centro porém não vai funcionar na div pois ela não é identificada como um texto*/
+    height: calc(120px+32px); /*deixamos o header como uma altura predefinida para "arrumar" a animação*/
+}
+
+header div {
+    width: 120px;
+    margin: auto; /*mesmo coisa que o text align center porém para centralizar a div*/
+    background-image: linear-gradient(90deg, #9572fc 0%, #43E7AB 50.52%, #E2D45C 100%);
+
+    border-radius: 50%;
+
+    display: flex; /*vai entender que todos elementos dentro da header div vão receber algumas propriedades, ele deixou a div no meio da imagem*/
+    padding: 4px; /*preencheu a caixa com 4px - colocou 4px ao redor*/
+
+    transition: transform .3s; /*quer dizer que vai fazer uma transição quando o header div receber o transform ele vai fazer uma transição de .3 segundos*/
+}
+
+header div:hover { /*quando eu passar o mouse por cima da div ele vai aplicar propriedades que vamos colocar entre os cochetes*/
+    transform: scale(1.1); /*quando eu passar o mouse em cima a escala dele vai ser de 1.1 porém não está "suave", para isso vamos adicionar transition transform no header div */
+}
+
+header div img { 
+    width: 100%; /* a largura vai ser 100% em relação a largura da header div*/
+    border-radius: 50%;
+}
+
+main { /*aqui que dimensionamos as box da main*/
+    max-width: 500px;
+    width: 90%;
+    margin: 32px auto; /*coloca 32px em cima e em baixo, e nas laterais fica automático*/
+
+    display: grid; /*para fazer o espaçamento entre as box de colunas*/
+    gap: 24px;
+}
+
+section {
+    color: white;
+    background-image: linear-gradient(90deg, #9572fc 0%, #43E7AB 50.52%, #E2D45C 100%);
+    padding-top: 4px;
+    border-radius: 10px;
+}
+
+section div {
+    background-color: #2A2634;
+    padding: 32px; /*colocar os pixels nas laterais*/
+    padding-top: 24px; /*muda os pixels no topo*/
+    border-radius: 8px; /*arredondamento de borda*/
+}
+
+section h2 {
+    font-weight: 900; /*peso da fonte*/
+    font-size: 24px; /*tamanho da  fonte*/
+    letter-spacing: -0.47px; /*espaçamento das letras*/
+}
+
+section p {
+    letter-spacing: -0.18px;
+    color: #A1A1AA;
+}
+
+section ul {
+    display: flex; /*visualização das caixas no html, muda todas as caixas dentro da UL*/
+    flex-wrap: wrap; /*quando colocar muita ul ele não vai para o lado, e sim para baixo*/ 
+    gap: 16px; /*espaço entre eles*/
+
+    margin-top: 24px ; /*espaço do topo*/
+}
+
+section ul li {
+    transition: transform .3s;
+}
+
+section ul li:hover {
+    transform: scale(1.1);
+}
+
+.games-list img {
+    width: 90px;
+    border-radius: 8px; /*borda da imagem*/
+}
+
+.chanel-list img {
+    border-radius: 50%;
+    width: 70px;
+    border: 1px solid #443e54;
+}
+
+/*animation*/
+
+header div { /*serve para identificar onde que sua animação vai ser aplicada*/
+    animation: fromTop .7s .4s backwards; /*.3 segundos de animação e 1s de delay (depois de um segundo da pag atualizada ela começa a animação
+    e o backwards traz o keyframe todo para essa animation tirando o "bug" que antes ela tinha*/
+}
+
+main section {
+    animation: fromBottom .7s .2s backwards;
+}
+
+main section:nth-child(1) { /*primeira seção do section*/
+    animation-delay: 0;
+}
+
+main section:nth-child(2) {
+    animation-delay: .4s;
+}
+
+main section:nth-child(3) {
+    animation-delay: .8s;
+}
+
+@keyframes fromTop { /* o @ serve para dar início a essa animação e o fromTop é um nome qualquer*/
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0); /*O Y seria o eixo Y. Ele vai parar em 0, que seria onde ele está no momento*/
+    }
+}
+
+@keyframes fromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
